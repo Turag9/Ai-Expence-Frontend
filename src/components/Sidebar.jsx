@@ -7,6 +7,7 @@ import {
     Sparkles,
     Wallet,
     LogOut,
+    X,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx';
 
@@ -18,25 +19,45 @@ const navItems = [
     { to: '/insights', label: 'AI Insights', icon: Sparkles },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ open, onClose }) => {
     const { user, logout } = useAuth();
     const initial = user?.name?.[0]?.toUpperCase() || 'U';
 
     return (
-        <aside className="w-64 bg-white border-r border-slate-100 hidden lg:flex flex-col shrink-0">
-            <div className="h-16 flex items-center gap-2 px-6 border-b border-slate-100">
-                <div className="h-8 w-8 rounded-lg bg-linear-to-br from-violet-400 to-violet-600 flex items-center justify-center">
-                    <Wallet size={16} className="text-white" />
+        <aside
+            className={`
+                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-100 flex flex-col shrink-0
+                transform transition-transform duration-300 ease-in-out
+                ${open ? 'translate-x-0' : '-translate-x-full'}
+                lg:static lg:translate-x-0 lg:z-auto
+            `}
+        >
+            {/* Header */}
+            <div className="h-16 flex items-center justify-between gap-2 px-6 border-b border-slate-100">
+                <div className="flex items-center gap-2">
+                    <div className="h-8 w-8 rounded-lg bg-linear-to-br from-violet-400 to-violet-600 flex items-center justify-center">
+                        <Wallet size={16} className="text-white" />
+                    </div>
+                    <span className="font-bold text-slate-900">ExpenseAI</span>
                 </div>
-                <span className="font-bold text-slate-900">ExpenseAI</span>
+                {/* Close button — mobile only */}
+                <button
+                    onClick={onClose}
+                    className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition"
+                    aria-label="Close menu"
+                >
+                    <X size={18} />
+                </button>
             </div>
 
+            {/* Nav items */}
             <nav className="flex-1 p-3 space-y-1.5">
                 {navItems.map(({ to, label, icon: Icon }) => (
                     <NavLink
                         key={to}
                         to={to}
                         end={to === '/'}
+                        onClick={onClose}   /* auto-close on mobile navigation */
                         className={({ isActive }) =>
                             `relative flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium transition ${
                                 isActive
@@ -51,6 +72,7 @@ const Sidebar = () => {
                 ))}
             </nav>
 
+            {/* User footer */}
             <div className="p-3 border-t border-slate-100">
                 <div className="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition">
                     <div className="h-9 w-9 rounded-full bg-linear-to-br from-violet-400 to-violet-600 flex items-center justify-center text-white font-semibold text-sm shrink-0">
