@@ -202,23 +202,26 @@ const Transactions = () => {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
+
+            {/* ── Page header ───────────────────────────────────────────── */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Transactions</h1>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Transactions</h1>
                     <p className="text-sm text-slate-500 mt-1.5">All your income and expenses</p>
                 </div>
-                <Button onClick={onCreate}>
+                <Button onClick={onCreate} className="self-start sm:self-auto">
                     <Plus size={16} /> Add Transaction
                 </Button>
             </div>
 
-            <div className="bg-white rounded-3xl border border-slate-100 p-6">
-                <div className="mb-5 flex items-center justify-between gap-3">
+            {/* ── Trend chart ───────────────────────────────────────────── */}
+            <div className="bg-white rounded-3xl border border-slate-100 p-4 sm:p-6">
+                <div className="mb-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <div>
                         <h2 className="text-lg font-bold text-slate-900 tracking-tight">Transaction Trend</h2>
                         <p className="text-xs text-slate-500 mt-1">Income vs expenses over time</p>
                     </div>
-                    <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-full shrink-0">
+                    <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-full self-start sm:self-auto shrink-0">
                         {[
                             { value: '30d', label: '30D' },
                             { value: '3m', label: '3M' },
@@ -242,6 +245,7 @@ const Transactions = () => {
                 <TransactionTrendChart data={trendData} currency={currency} interval={chartInterval} />
             </div>
 
+            {/* ── AI insight panel ──────────────────────────────────────── */}
             <div className="bg-white rounded-3xl border border-slate-100 p-5">
                 {!analysis ? (
                     <div className="flex items-center justify-between gap-4">
@@ -308,7 +312,8 @@ const Transactions = () => {
                 )}
             </div>
 
-            <div className="bg-white rounded-3xl border border-slate-100 p-5">
+            {/* ── Filters + List ────────────────────────────────────────── */}
+            <div className="bg-white rounded-3xl border border-slate-100 p-4 sm:p-5">
                 <div className="flex flex-col lg:flex-row lg:items-center gap-3 mb-5">
                     <div className="relative flex-1">
                         <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -325,7 +330,7 @@ const Transactions = () => {
                             <button
                                 key={tab.value || 'all'}
                                 onClick={() => setFilters({ ...filters, type: tab.value })}
-                                className={`px-4 py-1.5 rounded-full text-sm font-medium transition flex items-center gap-2 ${
+                                className={`px-3 sm:px-4 py-1.5 rounded-full text-sm font-medium transition flex items-center gap-1.5 ${
                                     filters.type === tab.value
                                         ? 'bg-white shadow-sm text-slate-900'
                                         : 'text-slate-600 hover:text-slate-900'
@@ -342,7 +347,7 @@ const Transactions = () => {
                     <select
                         value={filters.categoryId}
                         onChange={(e) => setFilters({ ...filters, categoryId: e.target.value })}
-                        className="px-4 py-2 rounded-full border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-violet-500"
+                        className="px-4 py-2 rounded-full border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-violet-500 self-start lg:self-auto"
                     >
                         <option value="">All categories</option>
                         {categories.map((c) => (
@@ -369,69 +374,123 @@ const Transactions = () => {
                         }
                     />
                 ) : (
-                    <div className="overflow-x-auto">
-                        <table className="w-full">
-                            <thead>
-                                <tr className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-100">
-                                    <th className="pb-4 pr-4">Category</th>
-                                    <th className="pb-4 pr-4">Description</th>
-                                    <th className="pb-4 pr-4">Date</th>
-                                    <th className="pb-4 pr-4">Type</th>
-                                    <th className="pb-4 pr-4 text-right">Amount</th>
-                                    <th className="pb-4"></th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-100">
-                                {paginated.map((t) => (
-                                    <tr key={t.id} className="hover:bg-slate-50/60 transition">
-                                        <td className="py-4 pr-4">
-                                            <CategoryBadge
-                                                name={t.category_name || 'Uncategorized'}
-                                                icon={t.category_icon}
-                                                color={t.category_color}
-                                                size="sm"
-                                            />
-                                        </td>
-                                        <td className="py-4 pr-4 text-sm text-slate-700">
-                                            {t.description || '—'}
-                                        </td>
-                                        <td className="py-4 pr-4 text-sm text-slate-500 whitespace-nowrap">
-                                            {formatDate(t.transaction_date)}
-                                        </td>
-                                        <td className="py-4 pr-4">
+                    <>
+                        {/* Desktop table — hidden on mobile */}
+                        <div className="hidden sm:block overflow-x-auto">
+                            <table className="w-full">
+                                <thead>
+                                    <tr className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-100">
+                                        <th className="pb-4 pr-4">Category</th>
+                                        <th className="pb-4 pr-4">Description</th>
+                                        <th className="pb-4 pr-4">Date</th>
+                                        <th className="pb-4 pr-4">Type</th>
+                                        <th className="pb-4 pr-4 text-right">Amount</th>
+                                        <th className="pb-4"></th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-slate-100">
+                                    {paginated.map((t) => (
+                                        <tr key={t.id} className="hover:bg-slate-50/60 transition">
+                                            <td className="py-4 pr-4">
+                                                <CategoryBadge
+                                                    name={t.category_name || 'Uncategorized'}
+                                                    icon={t.category_icon}
+                                                    color={t.category_color}
+                                                    size="sm"
+                                                />
+                                            </td>
+                                            <td className="py-4 pr-4 text-sm text-slate-700">
+                                                {t.description || '—'}
+                                            </td>
+                                            <td className="py-4 pr-4 text-sm text-slate-500 whitespace-nowrap">
+                                                {formatDate(t.transaction_date)}
+                                            </td>
+                                            <td className="py-4 pr-4">
+                                                <StatusPill variant={t.type === 'income' ? 'income' : 'expense'}>
+                                                    {t.type}
+                                                </StatusPill>
+                                            </td>
+                                            <td
+                                                className={`py-4 pr-4 text-sm font-semibold text-right whitespace-nowrap ${
+                                                    t.type === 'income' ? 'text-emerald-600' : 'text-rose-600'
+                                                }`}
+                                            >
+                                                {t.type === 'income' ? '+' : '-'}
+                                                {formatCurrency(t.amount, currency)}
+                                            </td>
+                                            <td className="py-4 text-right">
+                                                <div className="flex items-center justify-end gap-1">
+                                                    <button
+                                                        onClick={() => onEdit(t)}
+                                                        className="p-1.5 hover:bg-slate-100 rounded-md text-slate-500 transition"
+                                                    >
+                                                        <Pencil size={14} />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => onDelete(t.id)}
+                                                        className="p-1.5 hover:bg-rose-50 rounded-md text-rose-500 transition"
+                                                    >
+                                                        <Trash2 size={14} />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {/* Mobile cards — hidden on sm+ */}
+                        <div className="sm:hidden space-y-2">
+                            {paginated.map((t) => (
+                                <div
+                                    key={t.id}
+                                    className="flex items-center justify-between p-3 rounded-2xl border border-slate-100 hover:border-slate-200 transition"
+                                >
+                                    <div className="flex items-center gap-3 min-w-0">
+                                        <CategoryBadge
+                                            icon={t.category_icon}
+                                            color={t.category_color}
+                                            size="sm"
+                                        />
+                                        <div className="min-w-0">
+                                            <div className="text-sm font-medium text-slate-900 truncate">
+                                                {t.description || t.category_name || 'Untitled'}
+                                            </div>
+                                            <div className="text-xs text-slate-500">
+                                                {t.category_name || 'Uncategorized'} · {formatDate(t.transaction_date)}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-2 shrink-0 ml-2">
+                                        <div className="text-right">
+                                            <div className={`text-sm font-bold ${t.type === 'income' ? 'text-emerald-600' : 'text-rose-600'}`}>
+                                                {t.type === 'income' ? '+' : '-'}{formatCurrency(t.amount, currency)}
+                                            </div>
                                             <StatusPill variant={t.type === 'income' ? 'income' : 'expense'}>
                                                 {t.type}
                                             </StatusPill>
-                                        </td>
-                                        <td
-                                            className={`py-4 pr-4 text-sm font-semibold text-right whitespace-nowrap ${
-                                                t.type === 'income' ? 'text-emerald-600' : 'text-rose-600'
-                                            }`}
-                                        >
-                                            {t.type === 'income' ? '+' : '-'}
-                                            {formatCurrency(t.amount, currency)}
-                                        </td>
-                                        <td className="py-4 text-right">
-                                            <div className="flex items-center justify-end gap-1">
-                                                <button
-                                                    onClick={() => onEdit(t)}
-                                                    className="p-1.5 hover:bg-slate-100 rounded-md text-slate-500 transition"
-                                                >
-                                                    <Pencil size={14} />
-                                                </button>
-                                                <button
-                                                    onClick={() => onDelete(t.id)}
-                                                    className="p-1.5 hover:bg-rose-50 rounded-md text-rose-500 transition"
-                                                >
-                                                    <Trash2 size={14} />
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                        </div>
+                                        <div className="flex flex-col gap-1">
+                                            <button
+                                                onClick={() => onEdit(t)}
+                                                className="p-1.5 hover:bg-slate-100 rounded-md text-slate-500 transition"
+                                            >
+                                                <Pencil size={13} />
+                                            </button>
+                                            <button
+                                                onClick={() => onDelete(t.id)}
+                                                className="p-1.5 hover:bg-rose-50 rounded-md text-rose-500 transition"
+                                            >
+                                                <Trash2 size={13} />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
 
+                        {/* Pagination */}
                         {totalPages > 1 && (
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-5 pt-5 border-t border-slate-100">
                                 <div className="text-xs text-slate-500">
@@ -479,7 +538,7 @@ const Transactions = () => {
                                 </div>
                             </div>
                         )}
-                    </div>
+                    </>
                 )}
             </div>
 
