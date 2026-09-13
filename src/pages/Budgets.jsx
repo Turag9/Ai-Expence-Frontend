@@ -140,7 +140,7 @@ const Budgets = () => {
                     <button
                         onClick={analyzeAll}
                         disabled={analyzing || budgets.length === 0}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-teal-400 bg-teal-600 text-teal-600 hover:bg-teal-600 disabled:opacity-50 disabled:cursor-not-allowed transition"
                     >
                         {analyzing ? <Spinner size="sm" /> : <Sparkles size={14} />}
                         {analyzing ? 'Analyzing' : hasAnalyses ? 'Re-analyze' : 'Analyze'}

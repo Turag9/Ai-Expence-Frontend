@@ -70,7 +70,7 @@ const Dashboard = () => {
                     label="Balance"
                     value={formatCurrency(summary.balance, currency)}
                     icon={Wallet}
-                    accent="violet"
+                    accent="blue"
                 />
                 <KpiCard
                     label="Income"
@@ -117,7 +117,7 @@ const Dashboard = () => {
                         <h2 className="text-lg font-bold text-slate-900 tracking-tight">Recent Transactions</h2>
                         <Link
                             to="/transactions"
-                            className="inline-flex items-center gap-1 text-sm font-medium text-violet-600 hover:text-violet-700 transition"
+                            className="inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-600 transition"
                         >
                             View all
                             <ArrowRight size={14} />
@@ -159,7 +159,7 @@ const Dashboard = () => {
                         <h2 className="text-lg font-bold text-slate-900 tracking-tight">Budget Status</h2>
                         <Link
                             to="/budgets"
-                            className="inline-flex items-center gap-1 text-sm font-medium text-violet-600 hover:text-violet-700 transition"
+                            className="inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-600 transition"
                         >
                             View all
                             <ArrowRight size={14} />
@@ -172,7 +172,7 @@ const Dashboard = () => {
                                 <Target size={20} className="text-slate-400" />
                             </div>
                             <p className="text-sm font-semibold text-slate-900 mb-1">No budgets yet</p>
-                            <Link to="/budgets" className="text-xs text-violet-600 font-medium hover:text-violet-700">
+                            <Link to="/budgets" className="text-xs text-teal-600 font-medium hover:text-teal-600">
                                 Create one →
                             </Link>
                         </div>

@@ -32,7 +32,7 @@ const ActionCard = ({ title, description, icon: Icon, accentGradient, accentText
             {generating ? (
                 <Spinner size="sm" />
             ) : (
-                <Sparkles size={16} className="text-slate-300 group-hover:text-violet-500 transition" />
+                <Sparkles size={16} className="text-slate-300 group-hover:text-teal-600 transition" />
             )}
         </div>
         <h3 className="text-lg font-bold text-slate-900 mb-1.5">{title}</h3>
@@ -140,7 +140,7 @@ const Insights = () => {
                     label="Insights generated"
                     value={stats.total}
                     icon={Sparkles}
-                    accent="violet"
+                    accent="blue"
                 />
                 <KpiCard
                     label="Health score"
@@ -167,8 +167,8 @@ const Insights = () => {
                     title="Monthly Summary"
                     description="A full breakdown of this month's income, expenses, and a personalized health score with actionable recommendations."
                     icon={TrendingUp}
-                    accentGradient="from-violet-400 to-violet-600"
-                    accentText="text-violet-600"
+                    accentGradient="from-blue-700 to-teal-500"
+                    accentText="text-teal-600"
                     onClick={() => generate('monthly')}
                     generating={generating === 'monthly'}
                     lastGenerated={stats.latestMonthlyAt}

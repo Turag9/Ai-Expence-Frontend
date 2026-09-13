@@ -29,18 +29,18 @@ const ForgotPassword = () => {
         <div className="min-h-screen flex bg-white">
             <div className="flex-1 flex flex-col px-6 sm:px-10 lg:px-14 py-8 order-1">
                 <div className="flex justify-start items-center gap-2">
-                    <div className="h-9 w-9 rounded-xl bg-linear-to-br from-violet-400 to-violet-600 flex items-center justify-center">
+                    <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-blue-600 to-teal-500 flex items-center justify-center">
                         <Wallet size={18} className="text-white" />
                     </div>
-                    <span className="font-bold text-xl text-slate-900">ExpenseAI</span>
+                    <span className="font-bold text-xl text-slate-900">TrackingExpense</span>
                 </div>
 
                 <div className="flex-1 flex items-center justify-center py-10">
                     <div className="w-full max-w-md">
                         {!sent ? (
                             <>
-                                <div className="mb-6 w-14 h-14 rounded-2xl bg-violet-50 flex items-center justify-center">
-                                    <Mail size={24} className="text-violet-600" />
+                                <div className="mb-6 w-14 h-14 rounded-2xl bg-teal-50 flex items-center justify-center">
+                                    <Mail size={24} className="text-teal-600" />
                                 </div>
                                 <h2 className="text-4xl font-bold text-slate-900 tracking-tight mb-2">Forgot Password?</h2>
                                 <p className="text-slate-500 mb-10">Enter your email and we'll send you an OTP.</p>
@@ -53,7 +53,7 @@ const ForgotPassword = () => {
                                             required
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="w-full bg-slate-100/80 hover:bg-slate-100 focus:bg-white border-2 border-transparent focus:border-violet-500 rounded-2xl px-5 py-4 text-slate-900 text-sm focus:outline-none transition"
+                                            className="w-full bg-slate-100/80 hover:bg-slate-100 focus:bg-white border-2 border-transparent focus:border-teal-500 rounded-2xl px-5 py-4 text-slate-900 text-sm focus:outline-none transition"
                                             placeholder="you@example.com"
                                         />
                                     </div>
@@ -61,7 +61,7 @@ const ForgotPassword = () => {
                                     <button
                                         type="submit"
                                         disabled={loading}
-                                        className="w-full inline-flex items-center justify-center gap-2 bg-linear-to-br from-violet-400 to-violet-600 text-white font-semibold py-4 rounded-2xl transition shadow-lg shadow-violet-500/30 disabled:opacity-60 disabled:cursor-not-allowed"
+                                        className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-br from-blue-600 to-teal-500 text-white font-semibold py-4 rounded-2xl transition shadow-lg shadow-blue-500/30 disabled:opacity-60 disabled:cursor-not-allowed"
                                     >
                                         {loading ? (
                                             <>
@@ -87,7 +87,7 @@ const ForgotPassword = () => {
                                 </p>
                                 <Link
                                     to={`/reset-password?email=${encodeURIComponent(email)}`}
-                                    className="inline-flex items-center justify-center w-full bg-linear-to-br from-violet-400 to-violet-600 text-white font-semibold py-4 rounded-2xl transition shadow-lg shadow-violet-500/30"
+                                    className="inline-flex items-center justify-center w-full bg-gradient-to-br from-blue-600 to-teal-500 text-white font-semibold py-4 rounded-2xl transition shadow-lg shadow-blue-500/30"
                                 >
                                     Reset Password →
                                 </Link>
@@ -96,7 +96,7 @@ const ForgotPassword = () => {
 
                         <p className="text-center mt-8 text-sm text-slate-500">
                             Remember it?{' '}
-                            <Link to="/login" className="text-violet-600 font-semibold hover:text-violet-700 transition">
+                            <Link to="/login" className="text-teal-600 font-semibold hover:text-blue-700 transition">
                                 Sign In
                             </Link>
                         </p>

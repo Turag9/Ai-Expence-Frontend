@@ -245,12 +245,12 @@ const Transactions = () => {
                 <TransactionTrendChart data={trendData} currency={currency} interval={chartInterval} />
             </div>
 
-            {/* ── AI insight panel ──────────────────────────────────────── */}
+            {/* ── AI insight panel */}
             <div className="bg-white rounded-3xl border border-slate-100 p-5">
                 {!analysis ? (
                     <div className="flex items-center justify-between gap-4">
                         <div className="flex items-center gap-3 min-w-0">
-                            <div className="h-10 w-10 rounded-xl bg-linear-to-br from-violet-400 to-violet-600 flex items-center justify-center shrink-0">
+                            <div className="h-10 w-10 rounded-xl bg-linear-to-br from-blue-700 to-teal-500 flex items-center justify-center shrink-0">
                                 <Sparkles size={18} className="text-white" />
                             </div>
                             <div className="min-w-0">
@@ -280,14 +280,14 @@ const Transactions = () => {
                     </div>
                 ) : (
                     <div className="flex gap-4">
-                        <div className="h-10 w-10 rounded-xl bg-linear-to-br from-violet-400 to-violet-600 flex items-center justify-center shrink-0">
+                        <div className="h-10 w-10 rounded-xl bg-linear-to-br from-blue-700 to-teal-500 flex items-center justify-center shrink-0">
                             <Sparkles size={18} className="text-white" />
                         </div>
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-2">
                                 <h3 className="font-semibold text-slate-900">AI Spending Insight</h3>
                                 {analysis.highlight && (
-                                    <span className="inline-flex items-center bg-violet-50 text-violet-700 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                                    <span className="inline-flex items-center bg-teal-600 text-teal-600 text-xs font-medium px-2.5 py-0.5 rounded-full">
                                         {analysis.highlight}
                                     </span>
                                 )}
@@ -296,7 +296,7 @@ const Transactions = () => {
                             <button
                                 onClick={generateInsight}
                                 disabled={analysisLoading}
-                                className="mt-3 text-xs font-medium text-violet-600 hover:text-violet-700 disabled:opacity-50"
+                                className="mt-3 text-xs font-medium text-teal-600 hover:text-teal-600 disabled:opacity-50"
                             >
                                 {analysisLoading ? 'Re-analyzing...' : 'Re-analyze'}
                             </button>
@@ -321,7 +321,7 @@ const Transactions = () => {
                             value={filters.search}
                             onChange={(e) => setFilters({ ...filters, search: e.target.value })}
                             placeholder="Search description or notes..."
-                            className="w-full pl-10 pr-4 py-2 rounded-full border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                            className="w-full pl-10 pr-4 py-2 rounded-full border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                         />
                     </div>
 
@@ -347,7 +347,7 @@ const Transactions = () => {
                     <select
                         value={filters.categoryId}
                         onChange={(e) => setFilters({ ...filters, categoryId: e.target.value })}
-                        className="px-4 py-2 rounded-full border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-violet-500 self-start lg:self-auto"
+                        className="px-4 py-2 rounded-full border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 self-start lg:self-auto"
                     >
                         <option value="">All categories</option>
                         {categories.map((c) => (
@@ -520,7 +520,7 @@ const Transactions = () => {
                                                 onClick={() => setPage(p)}
                                                 className={`h-8 min-w-8 px-2.5 rounded-lg text-sm font-medium transition ${
                                                     safePage === p
-                                                        ? 'bg-violet-600 text-white shadow-sm shadow-violet-500/30'
+                                                        ? 'bg-teal-600 text-white shadow-sm shadow-blue-500/25'
                                                         : 'text-slate-600 hover:bg-slate-100'
                                                 }`}
                                             >

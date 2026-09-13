@@ -19,7 +19,7 @@ const labelMap = {
 };
 
 const typeStyles = {
-    monthly_summary: { gradient: 'from-violet-400 to-violet-600', Icon: TrendingUp },
+    monthly_summary: { gradient: 'from-blue-700 to-teal-500', Icon: TrendingUp },
     budget_alert: { gradient: 'from-rose-400 to-rose-600', Icon: AlertTriangle },
     savings_tips: { gradient: 'from-blue-400 to-blue-600', Icon: Lightbulb },
 };
@@ -63,7 +63,7 @@ const Stat = ({ label, value, accent = 'slate' }) => {
     const accents = {
         emerald: 'text-emerald-600',
         rose: 'text-rose-600',
-        violet: 'text-violet-600',
+        violet: 'text-teal-600',
         amber: 'text-amber-600',
         slate: 'text-slate-900',
     };
@@ -77,7 +77,7 @@ const Stat = ({ label, value, accent = 'slate' }) => {
 
 const MonthlySummaryView = ({ c }) => (
     <div className="space-y-6">
-        <div className="flex flex-col md:flex-row gap-6 items-center bg-linear-to-br from-violet-50 via-white to-blue-50 rounded-2xl p-6 border border-slate-100">
+        <div className="flex flex-col md:flex-row gap-6 items-center bg-linear-to-br from-blue-700 via-white to-blue-50 rounded-2xl p-6 border border-slate-100">
             <HealthScoreGauge score={c.healthScore} />
             <div className="flex-1 min-w-0">
                 <div className="text-[11px] uppercase tracking-wider font-semibold text-slate-500 mb-2">
@@ -95,7 +95,7 @@ const MonthlySummaryView = ({ c }) => (
 
         {typeof c.estimatedMonthlySavings === 'number' && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <Stat label="Health Score" value={`${c.healthScore ?? 0}/100`} accent="violet" />
+                <Stat label="Health Score" value={`${c.healthScore ?? 0}/100`} accent="blue" />
                 <Stat
                     label="Estimated Savings"
                     value={`$${Number(c.estimatedMonthlySavings).toLocaleString()}/mo`}
@@ -160,7 +160,7 @@ const MonthlySummaryView = ({ c }) => (
         {c.recommendations?.length > 0 && (
             <div>
                 <div className="flex items-center gap-2 mb-3">
-                    <Sparkles size={14} className="text-violet-600" />
+                    <Sparkles size={14} className="text-teal-600" />
                     <h4 className="text-xs font-semibold text-slate-700 uppercase tracking-wider">
                         Recommendations
                     </h4>
@@ -169,9 +169,9 @@ const MonthlySummaryView = ({ c }) => (
                     {c.recommendations.map((r, i) => (
                         <div
                             key={i}
-                            className="p-4 bg-white border border-slate-200 hover:border-violet-200 rounded-2xl transition flex items-start gap-3"
+                            className="p-4 bg-white border border-slate-200 hover:border-teal-400 rounded-2xl transition flex items-start gap-3"
                         >
-                            <div className="h-7 w-7 rounded-full bg-linear-to-br from-violet-400 to-violet-600 flex items-center justify-center text-xs font-bold text-white shrink-0">
+                            <div className="h-7 w-7 rounded-full bg-linear-to-br from-blue-700 to-teal-500 flex items-center justify-center text-xs font-bold text-white shrink-0">
                                 {i + 1}
                             </div>
                             <div className="flex-1 min-w-0">
@@ -195,7 +195,7 @@ const SavingsTipsView = ({ c }) => {
     return (
         <div className="space-y-5">
             {c.overallTip && (
-                <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-violet-500 to-violet-700 p-5 text-white">
+                <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-blue-700 to-teal-500 p-5 text-white">
                     <div className="absolute top-0 right-0 -mt-8 -mr-8 h-32 w-32 bg-white/10 rounded-full blur-2xl" />
                     <div className="relative flex items-start gap-3">
                         <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
@@ -214,7 +214,7 @@ const SavingsTipsView = ({ c }) => {
             {totalSavings > 0 && (
                 <div className="grid grid-cols-2 gap-3">
                     <Stat label="Total potential" value={`$${totalSavings.toFixed(0)}/mo`} accent="emerald" />
-                    <Stat label="Tips" value={c.tips?.length || 0} accent="violet" />
+                    <Stat label="Tips" value={c.tips?.length || 0} accent="blue" />
                 </div>
             )}
 
@@ -224,7 +224,7 @@ const SavingsTipsView = ({ c }) => {
                     return (
                         <div
                             key={i}
-                            className="group relative p-5 rounded-2xl bg-white border border-slate-100 hover:border-violet-200 hover:shadow-sm transition"
+                            className="group relative p-5 rounded-2xl bg-white border border-slate-100 hover:border-teal-400 hover:shadow-sm transition"
                         >
                             <div className="flex items-center justify-between mb-3">
                                 {t.category && (
@@ -278,7 +278,7 @@ const BudgetAlertView = ({ c }) => {
             {c.suggestions?.length > 0 && (
                 <div>
                     <div className="flex items-center gap-2 mb-3">
-                        <ArrowRight size={14} className="text-violet-600" />
+                        <ArrowRight size={14} className="text-teal-600" />
                         <h4 className="text-xs font-semibold text-slate-700 uppercase tracking-wider">
                             Suggested actions
                         </h4>
@@ -287,9 +287,9 @@ const BudgetAlertView = ({ c }) => {
                         {c.suggestions.map((sug, i) => (
                             <div
                                 key={i}
-                                className="p-4 bg-white border border-slate-200 hover:border-violet-200 rounded-2xl flex items-start gap-3 transition"
+                                className="p-4 bg-white border border-slate-200 hover:border-teal-400 rounded-2xl flex items-start gap-3 transition"
                             >
-                                <div className="h-7 w-7 rounded-full bg-violet-50 flex items-center justify-center shrink-0 text-xs font-bold text-violet-700">
+                                <div className="h-7 w-7 rounded-full bg-teal-600 flex items-center justify-center shrink-0 text-xs font-bold text-teal-600">
                                     {i + 1}
                                 </div>
                                 <p className="text-sm text-slate-700 leading-relaxed">{sug}</p>

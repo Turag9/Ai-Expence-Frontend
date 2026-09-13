@@ -1,7 +1,7 @@
 import { TrendingUp, TrendingDown } from 'lucide-react';
 
 const gradients = {
-    violet: 'from-violet-400 to-violet-600',
+    violet: 'from-blue-700 to-teal-500',
     orange: 'from-orange-400 to-orange-600',
     emerald: 'from-emerald-400 to-emerald-600',
     rose: 'from-rose-400 to-rose-600',

@@ -35,10 +35,10 @@ const Sidebar = ({ open, onClose }) => {
             {/* Header */}
             <div className="h-16 flex items-center justify-between gap-2 px-6 border-b border-slate-100">
                 <div className="flex items-center gap-2">
-                    <div className="h-8 w-8 rounded-lg bg-linear-to-br from-violet-400 to-violet-600 flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-teal-500 flex items-center justify-center">
                         <Wallet size={16} className="text-white" />
                     </div>
-                    <span className="font-bold text-slate-900">ExpenseAI</span>
+                    <span className="font-bold text-slate-900">TrackingExpense</span>
                 </div>
                 {/* Close button — mobile only */}
                 <button
@@ -61,7 +61,7 @@ const Sidebar = ({ open, onClose }) => {
                         className={({ isActive }) =>
                             `relative flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium transition ${
                                 isActive
-                                    ? 'bg-slate-100 text-slate-900 before:absolute before:left-0 before:top-2.5 before:bottom-2.5 before:w-1 before:rounded-full before:bg-violet-500'
+                                    ? 'bg-slate-100 text-slate-900 before:absolute before:left-0 before:top-2.5 before:bottom-2.5 before:w-1 before:rounded-full before:bg-teal-500'
                                     : 'text-slate-700 hover:bg-slate-50'
                             }`
                         }
@@ -75,7 +75,7 @@ const Sidebar = ({ open, onClose }) => {
             {/* User footer */}
             <div className="p-3 border-t border-slate-100">
                 <div className="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-slate-50 transition">
-                    <div className="h-9 w-9 rounded-full bg-linear-to-br from-violet-400 to-violet-600 flex items-center justify-center text-white font-semibold text-sm shrink-0">
+                    <div className="h-9 w-9 rounded-full bg-gradient-to-br from-blue-600 to-teal-500 flex items-center justify-center text-white font-semibold text-sm shrink-0">
                         {initial}
                     </div>
                     <div className="flex-1 min-w-0">
