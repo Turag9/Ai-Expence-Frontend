@@ -109,9 +109,7 @@ const ForgotPassword = () => {
                 </div>
             </div>
 
-            <div className="hidden lg:flex lg:w-1/2 xl:w-[55%] order-2">
-                <AuthHero headline="Recover" subheadline="Your account securely" />
-            </div>
+            
         </div>
     );
 };
